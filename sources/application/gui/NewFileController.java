@@ -1,39 +1,45 @@
 package application.gui;
 
+import application.Application;
+import application.algorithm.Graph;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class NewFileController {
+    private final Graph graph = new Graph();
 
     @FXML
-    private Button FirstTool;
+    private Button firstTool;
 
     @FXML
-    private Button SecondTool;
+    private Button secondTool;
 
     @FXML
-    private Button ThirdTool;
+    private Button thirdTool;
 
     @FXML
-    private Button CancelButton;
+    private Button cancelButton;
 
     @FXML
-    private Button OkButton;
+    private Button okButton;
 
     @FXML
-    private Pane WorkSpace;
+    private Pane workSpace;
 
     @FXML
     void Confirm(){
-        Stage stage = (Stage)OkButton.getScene().getWindow();
+        Stage stage = (Stage)okButton.getScene().getWindow();
+
+        Application.setNewGraph(graph);
+
         stage.close();
     }
 
     @FXML
     void Cancel(){
-        Stage stage = (Stage)CancelButton.getScene().getWindow();
+        Stage stage = (Stage)cancelButton.getScene().getWindow();
         stage.close();
     }
 }

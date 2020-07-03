@@ -11,20 +11,20 @@
    <children>
       <ToolBar prefHeight="36.0" prefWidth="600.0">
         <items>
-          <Button fx:id="FirstTool" mnemonicParsing="false" prefHeight="26.0" prefWidth="27.0" />
-            <Button fx:id="SecondTool" mnemonicParsing="false" prefHeight="26.0" prefWidth="27.0" />
-            <Button fx:id="ThirdTool" mnemonicParsing="false" prefHeight="26.0" prefWidth="27.0" />
+          <Button fx:id="firstTool" mnemonicParsing="false" prefHeight="26.0" prefWidth="27.0" />
+            <Button fx:id="secondTool" mnemonicParsing="false" prefHeight="26.0" prefWidth="27.0" />
+            <Button fx:id="thirdTool" mnemonicParsing="false" prefHeight="26.0" prefWidth="27.0" />
         </items>
       </ToolBar>
       <ButtonBar layoutY="360.0" prefHeight="40.0" prefWidth="600.0" style="-fx-background-color: BC8F8F;">
         <buttons>
-          <Button fx:id="CancelButton" mnemonicParsing="false" onAction="#Cancel" text="ОТМЕА" />
-            <Button fx:id="OkButton" mnemonicParsing="false" onAction="#Confirm" text="ОК" />
+          <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#Cancel" text="ОТМЕА" />
+            <Button fx:id="okButton" mnemonicParsing="false" onAction="#Confirm" text="ОК" />
         </buttons>
          <padding>
             <Insets right="8.0" />
          </padding>
       </ButtonBar>
-      <Pane fx:id="WorkSpace" layoutY="37.0" prefHeight="325.0" prefWidth="600.0" />
+      <Pane fx:id="workSpace" layoutY="37.0" prefHeight="325.0" prefWidth="600.0" />
    </children>
 </AnchorPane>

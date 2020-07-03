@@ -1,5 +1,6 @@
 package application.gui;
 
+        import application.Application;
         import javafx.fxml.FXML;
         import javafx.scene.control.Button;
         import javafx.scene.control.TextField;
@@ -11,37 +12,40 @@ package application.gui;
 public class SaveFileController {
 
     @FXML
-    private Button CancelButton;
+    private Button cancelButton;
 
     @FXML
-    private Button ConfirmButton;
+    private Button confirmButton;
 
     @FXML
-    private TextField TextField;
+    private TextField textField;
 
     @FXML
     void Confirm(){
-        Stage stage = (Stage)ConfirmButton.getScene().getWindow();
+        Stage stage = (Stage)confirmButton.getScene().getWindow();
+
+        Application.saveGraphToFile(textField.getText());
+
         stage.close();
     }
 
     @FXML
     void Cancel(){
-        Stage stage = (Stage)CancelButton.getScene().getWindow();
+        Stage stage = (Stage)cancelButton.getScene().getWindow();
         stage.close();
     }
 
     @FXML
     void ChooseDirectory(){
         final FileChooser fileChooser = new FileChooser();
-        TextField.clear();
+        textField.clear();
 
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Graph", "*.graph"));
 
-        File file = fileChooser.showSaveDialog((Stage)TextField.getScene().getWindow());
+        File file = fileChooser.showSaveDialog((Stage)textField.getScene().getWindow());
         if (file != null) {
-            TextField.setText(file.getPath());
+            textField.setText(file.getPath());
         }
     }
 }

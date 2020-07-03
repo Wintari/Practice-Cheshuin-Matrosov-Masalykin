@@ -7,11 +7,11 @@ import javafx.stage.Stage;
 public class HelpController {
 
     @FXML
-    private Button CloseButton;
+    private Button closeButton;
 
     @FXML
     void Close(){
-        Stage stage = (Stage)CloseButton.getScene().getWindow();
+        Stage stage = (Stage)closeButton.getScene().getWindow();
         stage.close();
     }
 }

@@ -15,43 +15,43 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Controller {
+public class MainWindowController {
 
-    int CountOfStep = 10;
-    int CurrentStep = 1;
-
-    @FXML
-    public MenuItem NewButton;
+    int countOfStep = 10;
+    int currentStep = 1;
 
     @FXML
-    public MenuItem OpenFileButton;
+    public MenuItem newButton;
 
     @FXML
-    public MenuItem SaveButton;
+    public MenuItem openFileButton;
 
     @FXML
-    public MenuItem QuitButton;
+    public MenuItem saveButton;
 
     @FXML
-    public MenuItem HelpButton;
+    public MenuItem quitButton;
 
     @FXML
-    public AnchorPane AnchorPane;
+    public MenuItem helpButton;
 
     @FXML
-    public Button NextStepButton;
+    public AnchorPane anchorPane;
 
     @FXML
-    public Button PrevStepButton;
+    public Button nextStepButton;
 
     @FXML
-    public Label StepNumberField;
+    public Button prevStepButton;
 
     @FXML
-    public ListView<?> StackList;
+    public Label stepNumberField;
 
     @FXML
-    public Pane GraphPane;
+    public ListView<?> stackList;
+
+    @FXML
+    public Pane graphPane;
 
     @FXML
     void initNewFileWindow(){
@@ -62,7 +62,7 @@ public class Controller {
             stage.setTitle("New file");
             stage.setResizable(false);
             stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner((Stage)GraphPane.getScene().getWindow());
+            stage.initOwner((Stage)graphPane.getScene().getWindow());
             stage.setScene(new Scene(root, 600, 400));
             stage.show();
         }
@@ -75,12 +75,12 @@ public class Controller {
     void initNewHelpWindow(){
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("help.fxml"));
+            root = FXMLLoader.load(getClass().getResource("Help.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Help");
             stage.setResizable(false);
             stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner((Stage)GraphPane.getScene().getWindow());
+            stage.initOwner((Stage)graphPane.getScene().getWindow());
             stage.setScene(new Scene(root, 600, 425));
             stage.show();
         }
@@ -98,7 +98,7 @@ public class Controller {
             stage.setTitle("Open file");
             stage.setResizable(true);
             stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner((Stage)GraphPane.getScene().getWindow());
+            stage.initOwner((Stage)graphPane.getScene().getWindow());
             stage.setScene(new Scene(root, 400, 150));
             stage.show();
         }
@@ -116,7 +116,7 @@ public class Controller {
             stage.setTitle("Open file");
             stage.setResizable(false);
             stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner((Stage)GraphPane.getScene().getWindow());
+            stage.initOwner((Stage)graphPane.getScene().getWindow());
             stage.setScene(new Scene(root, 400, 150));
             stage.show();
         }
@@ -127,23 +127,23 @@ public class Controller {
 
     @FXML
     void handleCloseButtonAction(){
-        Stage stage = (Stage)GraphPane.getScene().getWindow();
+        Stage stage = (Stage)graphPane.getScene().getWindow();
         stage.close();
     }
 
     @FXML
     void nextstep(){
-        if (CurrentStep < CountOfStep){
-            CurrentStep = CurrentStep + 1;
+        if (currentStep < countOfStep){
+            currentStep = currentStep + 1;
         }
-        StepNumberField.setText("   Шаг " + CurrentStep + "/" + CountOfStep);
+        stepNumberField.setText("   Шаг " + currentStep + "/" + countOfStep);
     }
 
     @FXML
     void prevstep(){
-        if (CurrentStep > 1){
-            CurrentStep = CurrentStep - 1;
+        if (currentStep > 1){
+            currentStep = currentStep - 1;
         }
-        StepNumberField.setText("   Шаг " + CurrentStep + "/" + CountOfStep);
+        stepNumberField.setText("   Шаг " + currentStep + "/" + countOfStep);
     }
 }

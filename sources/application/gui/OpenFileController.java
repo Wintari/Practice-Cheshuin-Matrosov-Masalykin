@@ -1,5 +1,6 @@
 package application.gui;
 
+import application.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -12,23 +13,26 @@ import java.io.File;
 public class OpenFileController {
 
     @FXML
-    private Button CancelButton;
+    private Button cancelButton;
 
     @FXML
-    private Button ConfirmButton;
+    private Button confirmButton;
 
     @FXML
-    private TextField TextField;
+    private TextField textField;
 
     @FXML
     void Confirm(){
-        Stage stage = (Stage)ConfirmButton.getScene().getWindow();
+        Stage stage = (Stage)confirmButton.getScene().getWindow();
+
+        Application.loadGraphFromFile(textField.getText());
+
         stage.close();
     }
 
     @FXML
     void Cancel(){
-        Stage stage = (Stage)CancelButton.getScene().getWindow();
+        Stage stage = (Stage)cancelButton.getScene().getWindow();
         stage.close();
     }
 
@@ -37,10 +41,10 @@ public class OpenFileController {
         final FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Graph", "*.graph"));
-        TextField.clear();
-        File file = fileChooser.showOpenDialog((Stage)TextField.getScene().getWindow());
+        textField.clear();
+        File file = fileChooser.showOpenDialog((Stage)textField.getScene().getWindow());
         if (file != null) {
-            TextField.setText(file.getAbsolutePath());
+            textField.setText(file.getAbsolutePath());
         }
     }
 }

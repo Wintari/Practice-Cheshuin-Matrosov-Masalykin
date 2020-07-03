@@ -7,5 +7,5 @@ module Practice.Cheshuin.Matrosov.Masalykin {
     requires javafx.swing;
     requires javafx.fxml;
 
-    opens application.gui;
+    opens application;
 }

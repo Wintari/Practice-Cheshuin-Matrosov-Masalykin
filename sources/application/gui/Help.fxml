@@ -14,7 +14,7 @@
    <children>
       <ButtonBar layoutY="387.0" prefHeight="40.0" prefWidth="600.0" style="-fx-background-color: BC8F8F;">
         <buttons>
-          <Button fx:id="CloseButton" maxHeight="-Infinity" mnemonicParsing="false" onAction="#Close" prefHeight="15.0" text="Закрыть" />
+          <Button fx:id="closeButton" maxHeight="-Infinity" mnemonicParsing="false" onAction="#Close" prefHeight="15.0" text="Закрыть" />
         </buttons>
          <padding>
             <Insets right="6.0" />
