@@ -63,7 +63,7 @@ public class Controller {
             stage.setResizable(false);
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner((Stage)GraphPane.getScene().getWindow());
-            stage.setScene(new Scene(root, 587, 388));
+            stage.setScene(new Scene(root, 600, 400));
             stage.show();
         }
         catch (IOException e) {
@@ -81,7 +81,7 @@ public class Controller {
             stage.setResizable(false);
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner((Stage)GraphPane.getScene().getWindow());
-            stage.setScene(new Scene(root, 587, 415));
+            stage.setScene(new Scene(root, 600, 425));
             stage.show();
         }
         catch (IOException e) {
@@ -96,10 +96,10 @@ public class Controller {
             root = FXMLLoader.load(getClass().getResource("OpenFile.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Open file");
-            stage.setResizable(false);
+            stage.setResizable(true);
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner((Stage)GraphPane.getScene().getWindow());
-            stage.setScene(new Scene(root, 387, 144));
+            stage.setScene(new Scene(root, 400, 150));
             stage.show();
         }
         catch (IOException e) {
@@ -117,7 +117,7 @@ public class Controller {
             stage.setResizable(false);
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner((Stage)GraphPane.getScene().getWindow());
-            stage.setScene(new Scene(root, 387, 144));
+            stage.setScene(new Scene(root, 400, 150));
             stage.show();
         }
         catch (IOException e) {
