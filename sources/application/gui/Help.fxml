@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="427.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.gui.HelpController">
+   <children>
+      <ButtonBar layoutY="387.0" prefHeight="40.0" prefWidth="600.0" style="-fx-background-color: BC8F8F;">
+        <buttons>
+          <Button fx:id="closeButton" maxHeight="-Infinity" mnemonicParsing="false" onAction="#Close" prefHeight="15.0" text="Закрыть" />
+        </buttons>
+         <padding>
+            <Insets right="6.0" />
+         </padding>
+      </ButtonBar>
+      <Accordion layoutX="98.0" layoutY="80.0" />
+      <TabPane layoutX="-2.0" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Информаци о программе">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="346.0" prefWidth="600.0">
+                     <children>
+                        <Text layoutX="13.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Визуализатор с графическим интерфейсом алгоритма нахождения мостов в неориентированном графе(модификацией поиска в глубину) на языке Java." textAlignment="JUSTIFY" wrappingWidth="573.3367691040039">
+                           <font>
+                              <Font name="Times New Roman" size="16.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Руководство пользователя">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="358.0" prefWidth="606.0">
+                     <children>
+                        <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Тыкайте на все кнопки, авось заработает!" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Информация о разработчиках">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="15.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Матросов Денис - qwerty_19200@mail.ru:" wrappingWidth="579.7367324829102">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="15.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* Лидер проекта" wrappingWidth="241.33673858642578" />
+                        <Text layoutX="15.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* Проетирование GUI" wrappingWidth="232.53668975830078" />
+                        <Text layoutX="15.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* Написание GUI" wrappingWidth="235.73670196533203" />
+                        <Text layoutX="15.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* Тестирование GUI" wrappingWidth="227.73673248291016" />
+                        <Text layoutX="16.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Масалыкин Даниил - dan.masalikin2017@gmail.com:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="15.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* Написание реализации алгоритма" />
+                        <Text layoutX="15.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* Тестирование алгоритма" />
+                        <Text layoutX="15.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* Написание ввода/вывода графа из файла" />
+                        <Text layoutX="14.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Чешуин Дмитрий - makotozeros@gmail.com:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="14.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* Проектирование архитектуры программы" />
+                        <Text layoutX="14.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* Написание класса, осуществляющего хранение шагов алгоритма, а также их визуализацию" />
+                        <Text layoutX="14.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* Слияние наработок" />
+                        <Text layoutX="14.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* Общее тестирование программы" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
