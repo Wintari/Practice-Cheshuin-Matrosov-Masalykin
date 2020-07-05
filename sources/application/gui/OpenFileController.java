@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 public class OpenFileController {
 
@@ -25,7 +26,12 @@ public class OpenFileController {
     void Confirm(){
         Stage stage = (Stage)confirmButton.getScene().getWindow();
 
-        Application.loadGraphFromFile(textField.getText());
+        try {
+            Application.loadGraphFromFile(textField.getText());
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         stage.close();
     }

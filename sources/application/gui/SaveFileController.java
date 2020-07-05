@@ -8,6 +8,7 @@ package application.gui;
         import javafx.stage.Stage;
 
         import java.io.File;
+        import java.io.IOException;
 
 public class SaveFileController {
 
@@ -24,7 +25,12 @@ public class SaveFileController {
     void Confirm(){
         Stage stage = (Stage)confirmButton.getScene().getWindow();
 
-        Application.saveGraphToFile(textField.getText());
+        try {
+            Application.saveGraphToFile(textField.getText());
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
 
         stage.close();
     }

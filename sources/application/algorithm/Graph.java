@@ -10,7 +10,7 @@ public class Graph {
     /**
      * Represents an Node of graph with coordinates and set of edges.
      */
-    static class Node
+    public static class Node
     {
         final private String name;
         private final int x;
