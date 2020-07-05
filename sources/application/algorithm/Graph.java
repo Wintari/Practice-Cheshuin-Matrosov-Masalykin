@@ -1,5 +1,7 @@
 package application.algorithm;
 
+import javafx.util.Pair;
+
 import java.util.*;
 
 /**
@@ -164,23 +166,23 @@ public class Graph {
             list.add(node.name);
         }
 
-        HashSet<Map.Entry<String, String>> edges = new HashSet<>();
+        HashSet<Pair<String, String>> edges = new HashSet<>();
 
         for (Node node : getNodes())
         {
             for(Node edge : node.edges.keySet()) {
-                Map.Entry<String, String> dEdge = Map.entry(node.name, edge.name);
-                Map.Entry<String, String> rEdge = Map.entry(edge.name, node.name);
+                Pair<String, String> dEdge = new Pair<>(node.name, edge.name);
+                Pair<String, String> rEdge = new Pair<>(edge.name, node.name);
 
 
                 if (!edges.contains(dEdge) && !edges.contains(rEdge))
                 {
-                    edges.add(Map.entry(node.name, edge.name));
+                    edges.add(new Pair<>(node.name, edge.name));
                 }
             }
         }
 
-        for(Map.Entry<String, String> edge : edges)
+        for(Pair<String, String> edge : edges)
         {
             list.add(edge.getKey() + " -- " + edge.getValue());
         }
