@@ -8,6 +8,7 @@ import application.stepper.Stepper;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.LinkedList;
 
 public class Application {
     public static final Stepper stepper = new Stepper();
@@ -32,6 +33,8 @@ public class Application {
         BridgesFinder finder = new BridgesFinder();
         finder.findBridges(graph);
 
+
+        LinkedList<String> arr = graph.toStringList();
         System.out.println("OK");
     }
 

@@ -16,7 +16,7 @@ public class GraphLoader {
         while (!currString.equals("")) {
             subStr = currString.split(" ");
             System.out.println(subStr[0] + " " + subStr[1] + " " + subStr[2]);
-            graph.addNode(subStr[0], Integer.parseInt(subStr[1]), Integer.parseInt(subStr[2]));
+            graph.addNode(subStr[0]);
             currString = scanner.next();
         }
         while (scanner.hasNext()) {
@@ -39,7 +39,7 @@ public class GraphLoader {
         Iterator<Graph.Node> i = graph.getNodes().iterator();
         while(i.hasNext()){
             Graph.Node curr = i.next();
-            writer.write(curr.getName() + " " + curr.getX() + " " + curr.getY() + "\n");
+            writer.write(curr.getName() + " " + 0 + " " + 0 + "\n");
         }
         writer.write("\n");
         i = graph.getNodes().iterator();

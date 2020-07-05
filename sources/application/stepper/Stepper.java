@@ -1,7 +1,5 @@
 package application.stepper;
 
-import application.algorithm.Graph;
-
 import java.util.ArrayList;
 
 public class Stepper {

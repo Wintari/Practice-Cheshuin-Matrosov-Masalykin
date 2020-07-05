@@ -12,9 +12,6 @@ public class BridgesFinder{
     private final HashMap<String, Integer> fup = new HashMap<>();
 
     private void dfs(Graph.Node node, Graph.Node parent){
-        Application.stepper.newStep(new NodeAction(NodeAction.Action.NODE_STARTED,
-                node, timer, timer, -1, -1), null);
-
         used.put(node.getName(), true);
         tin.put(node.getName(), timer);
         fup.put(node.getName(), timer);
@@ -23,37 +20,44 @@ public class BridgesFinder{
 
         for (Graph.Node edge : node.getEdges()) {
             if (edge == parent) continue;
-            Application.stepper.newStep(null,
-                    new EdgeAction(EdgeAction.Action.EDGE_STARTED, edge, node));
             if (used.get(edge.getName())) {
+                Application.stepper.newStep(null,
+                        new EdgeAction(EdgeAction.Action.EDGE_STARTED, edge, node));
+
                 int newFup = Math.min(fup.get(node.getName()), tin.get(edge.getName()));
-                Application.stepper.newStep(new NodeAction(NodeAction.Action.TIME_UPDATED,
+
+                NodeAction fupUpdate = new NodeAction(NodeAction.Action.TIME_UPDATED,
                         node, tin.get(node.getName()), newFup, tin.get(node.getName()),
-                        fup.get(node.getName())), null);
+                        fup.get(node.getName()));
 
                 fup.put(node.getName(), newFup);
 
-                Application.stepper.newStep(null,
+                Application.stepper.newStep(fupUpdate,
                         new EdgeAction(EdgeAction.Action.EDGE_FINISHED_COMMON, edge, node));
             }
             else {
+                Application.stepper.newStep(new NodeAction(NodeAction.Action.NODE_STARTED,
+                                edge, timer, timer, -1, -1),
+                        new EdgeAction(EdgeAction.Action.EDGE_STARTED, edge, node));
+
                 dfs(edge, node);
                 int newFup = Math.min(fup.get(node.getName()), fup.get(edge.getName()));
 
-                Application.stepper.newStep(new NodeAction(NodeAction.Action.TIME_UPDATED,
+                NodeAction fupUpdate = new NodeAction(NodeAction.Action.TIME_UPDATED,
                         node, tin.get(node.getName()), newFup, tin.get(node.getName()),
-                        fup.get(node.getName())), null);
+                        fup.get(node.getName()));
 
                 fup.put(node.getName(), newFup);
                 if (fup.get(edge.getName()) > tin.get(node.getName())) {
-                    Application.stepper.newStep(null,
+
+                    Application.stepper.newStep(fupUpdate,
                             new EdgeAction(EdgeAction.Action.EDGE_FINISHED_BRIDGE, edge, node));
 
                     System.out.println("BRIDGE: " + edge.getName() + " -- " + node.getName());
                 }
                 else
                 {
-                    Application.stepper.newStep(null,
+                    Application.stepper.newStep(fupUpdate,
                             new EdgeAction(EdgeAction.Action.EDGE_FINISHED_COMMON, edge, node));
                 }
             }
@@ -72,8 +76,11 @@ public class BridgesFinder{
         }
 
         for(Graph.Node node : graph.getNodes()){
-            if(!used.get(node.getName()))
+            if(!used.get(node.getName())) {
+                Application.stepper.newStep(new NodeAction(NodeAction.Action.NODE_STARTED,
+                        node, timer, timer, -1, -1), null);
                 dfs(node, null);
+            }
         }
     }
 }

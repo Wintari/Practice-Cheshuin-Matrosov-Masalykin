@@ -13,8 +13,6 @@ public class Graph {
     public static class Node
     {
         final private String name;
-        private final int x;
-        private final int y;
         private final HashMap<Node, Node> edges = new HashMap<>();
 
         /**
@@ -24,21 +22,6 @@ public class Graph {
         Node(String name)
         {
             this.name = name;
-            this.x = 0;
-            this.y = 0;
-        }
-
-        /**
-         * Create a new object of this class..
-         * @param name This Node's name.
-         * @param x This Node's X position.
-         * @param y This Node's Y position.
-         */
-        Node(String name, int x, int y)
-        {
-            this.name = name;
-            this.x = x;
-            this.y = y;
         }
 
         @Override
@@ -75,24 +58,6 @@ public class Graph {
         }
 
         /**
-         * Return the X posotion of this Node.
-         * @return X posotion of this Node.
-         */
-        public int getX()
-        {
-            return x;
-        }
-
-        /**
-         * Return the Y posotion of this Node.
-         * @return Y posotion of this Node.
-         */
-        public int getY()
-        {
-            return y;
-        }
-
-        /**
          * Return the set of edges of this Node.
          * @return Set of edges of this Node.
          */
@@ -107,12 +72,10 @@ public class Graph {
     /**
      * Add new node to the graph.
      * @param name new Node's name.
-     * @param x new Node's X position.
-     * @param y new Node's Y position.
      */
-    public void addNode(String name, int x, int y)
+    public void addNode(String name)
     {
-        Node node = new Node(name, x, y);
+        Node node = new Node(name);
         nodes.putIfAbsent(node, node);
     }
 
@@ -191,5 +154,37 @@ public class Graph {
     public Set<Node> getNodes()
     {
         return nodes.keySet();
+    }
+
+    public LinkedList<String> toStringList()
+    {
+        LinkedList<String> list = new LinkedList<>();
+        for(Node node : getNodes())
+        {
+            list.add(node.name);
+        }
+
+        HashSet<Map.Entry<String, String>> edges = new HashSet<>();
+
+        for (Node node : getNodes())
+        {
+            for(Node edge : node.edges.keySet()) {
+                Map.Entry<String, String> dEdge = Map.entry(node.name, edge.name);
+                Map.Entry<String, String> rEdge = Map.entry(edge.name, node.name);
+
+
+                if (!edges.contains(dEdge) && !edges.contains(rEdge))
+                {
+                    edges.add(Map.entry(node.name, edge.name));
+                }
+            }
+        }
+
+        for(Map.Entry<String, String> edge : edges)
+        {
+            list.add(edge.getKey() + " -- " + edge.getValue());
+        }
+
+        return list;
     }
 }
