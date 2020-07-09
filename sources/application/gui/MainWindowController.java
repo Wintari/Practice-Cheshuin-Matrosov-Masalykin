@@ -5,7 +5,8 @@ import application.graphviz.Proba;
 
 import application.stepper.EdgeAction;
 import application.stepper.NodeAction;
-import application.stepper.Step;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,17 +22,15 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class MainWindowController {
 
     int countOfStep = 10;
     int currentStep = 1;
-
-    LinkedList<LinkedList<String>> dotSources = new LinkedList<LinkedList<String>>();
 
     @FXML
     public MenuItem newButton;
@@ -73,26 +72,10 @@ public class MainWindowController {
         this.countOfStep = Application.stepper.getStepCount() + 1;
     }
 
-    void setDotSource(){
-        this.dotSources.clear();
-        for(int i = 0; i < countOfStep; i++) {
-            this.dotSources.add(Application.graph.toStringList());
-        }
-    }
-
-    void setGraphView(int index){
-        if(!dotSources.isEmpty()) {
-            Proba.makeGraph(dotSources.get(index - 1));
-        }
-    }
-
     @FXML
     void initialize(){
         setCountOfStep();
-        setDotSource();
-        initSteps();
         stepNumberField.setText("   Шаг " + currentStep + "/" + (countOfStep - 1));
-        setGraphView(1);
         try {
             printImg();
         }catch (IOException e){
@@ -102,7 +85,6 @@ public class MainWindowController {
 
     void reInit(){
         stepNumberField.setText("   Шаг " + currentStep + "/" +  (countOfStep - 1));
-        setGraphView(currentStep);
         try {
             printImg();
         }catch (IOException e){
@@ -194,26 +176,6 @@ public class MainWindowController {
         stage.close();
     }
 
-    void addToDotSource(int startIndex, String line, String newLine){
-        for(int i = startIndex - 1; i < countOfStep; i++){
-            if(dotSources.get(i).contains(line)) {
-                dotSources.get(i).set(dotSources.get(i).indexOf(line), newLine);
-            }
-            else if(dotSources.get(i).contains(line + " [color=blue]")) {
-                dotSources.get(i).set(dotSources.get(i).indexOf(line + " [color=blue]"), newLine);
-            }
-            else if(dotSources.get(i).contains(line + " [color=green]")) {
-                dotSources.get(i).set(dotSources.get(i).indexOf(line + " [color=green]"), newLine);
-            }
-            else if(dotSources.get(i).contains(line + " [color=yellow]")) {
-                dotSources.get(i).set(dotSources.get(i).indexOf(line + " [color=yellow]"), newLine);
-            }
-            else if(dotSources.get(i).contains(line + " [color=grey]")) {
-                dotSources.get(i).set(dotSources.get(i).indexOf(line + " [color=grey]"), newLine);
-            }
-        }
-    };
-
     public static String reverseString(String inputString) {
         int stringLength = inputString.length();
         String result = "";
@@ -223,60 +185,14 @@ public class MainWindowController {
         return result;
     }
 
-    void initSteps(){
-        for(int i = 1; i < countOfStep; i++){
-            Step step = Application.stepper.nextStep();
-
-            EdgeAction edgeAction = step.getEdgeAction();
-            NodeAction nodeAction = step.getNodeAction();
-
-            if(edgeAction != null) {
-
-                String tmp = edgeAction.getEdge();
-                String reversTmp = reverseString(tmp);
-
-                EdgeAction.Action edgeaction = edgeAction.getAction();
-
-                switch (edgeaction) {
-                    case EDGE_STARTED:
-                        addToDotSource(i, tmp, tmp + " [color=blue]");
-                        addToDotSource(i, reversTmp, reversTmp + " [color=blue]");
-                        break;
-                    case EDGE_FINISHED_COMMON:
-                        addToDotSource(i, tmp, tmp + " [color=grey]");
-                        addToDotSource(i, reversTmp, reversTmp + " [color=grey]");
-                        break;
-                    case EDGE_FINISHED_BRIDGE:
-                        addToDotSource(i, tmp, tmp + " [color=green]");
-                        addToDotSource(i, reversTmp, reversTmp + " [color=green]");
-                        break;
-                }
-            }
-
-            if(nodeAction != null){
-                String tmp = nodeAction.getNode().getName();
-
-                NodeAction.Action nodeacttion = nodeAction.getAction();
-
-                switch (nodeacttion){
-                    case NODE_STARTED:
-                        addToDotSource(i, tmp, tmp + " [color=blue]");
-                        break;
-                    case NODE_FINISHED:
-                        addToDotSource(i, tmp, tmp + " [color=grey]");
-                        break;
-                    case TIME_UPDATED:
-                        addToDotSource(i, tmp, tmp + " [color=yellow]");
-                        break;
-                }
-            }
-        }
-    }
-
     @FXML
     void nextstep(){
         if (currentStep <  (countOfStep - 1)){
             currentStep = currentStep + 1;
+            ArrayList<String> stack = Application.stepper.nextStep();
+
+            ObservableList<String> observableStack = FXCollections.observableArrayList(stack);
+            stackList.setItems(observableStack);
         }
         reInit();
     }
@@ -285,13 +201,17 @@ public class MainWindowController {
     void prevstep(){
         if (currentStep > 1){
             currentStep = currentStep - 1;
+            ArrayList<String> stack = Application.stepper.prevStep();
+
+            ObservableList<String> observableStack = FXCollections.observableArrayList(stack);
+            stackList.setItems(observableStack);
         }
         reInit();
     }
 
     public void printImg() throws IOException{
         FileInputStream inputstream;
-        inputstream = new FileInputStream("C:\\temp\\img249.png");
+        inputstream = new FileInputStream("temp.png");
         Image img = new Image(inputstream);
         GraphView.setImage(img);
     }

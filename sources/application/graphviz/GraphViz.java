@@ -31,6 +31,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * <dl>
@@ -139,8 +141,8 @@ public class GraphViz
      */
     public GraphViz() {
         if (GraphViz.osName.contains("Windows")) {
-            this.tempDir = "c:/temp";
-            this.executable = "c:/Program Files (x86)/Graphviz2.38/bin/dot.exe";
+            this.tempDir = "/temp";
+            this.executable = "D:/Рабочий стол/ВУЗ/Practice/executable/Graphviz2.38/bin/dot.exe";
         } else if (GraphViz.osName.equals("MacOSX")) {
             this.tempDir = "/tmp";
             this.executable = "/usr/local/bin/dot";

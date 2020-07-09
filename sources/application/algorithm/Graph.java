@@ -158,6 +158,40 @@ public class Graph {
         return nodes.keySet();
     }
 
+    public LinkedList<String> nodesToList()
+    {
+        LinkedList<String> list = new LinkedList<>();
+
+        for(Node node : getNodes())
+        {
+            list.add(node.name);
+        }
+
+        return list;
+    }
+
+    public LinkedList<Pair<String, String>> edgesToList()
+    {
+        HashSet<Pair<String, String>> edges = new HashSet<>();
+
+        for (Node node : getNodes())
+        {
+            for(Node edge : node.edges.keySet()) {
+                Pair<String, String> dEdge = new Pair<>(node.name, edge.name);
+                Pair<String, String> rEdge = new Pair<>(edge.name, node.name);
+
+
+                if (!edges.contains(dEdge) && !edges.contains(rEdge))
+                {
+                    edges.add(new Pair<>(node.name, edge.name));
+
+                }
+            }
+        }
+
+        return new LinkedList<>(edges);
+    }
+
     public LinkedList<String> toStringList()
     {
         LinkedList<String> list = new LinkedList<>();

@@ -131,7 +131,7 @@ public class NewFileController {
     public void printImg() throws IOException {
         Proba.makeGraph(graph.toStringList());
         FileInputStream inputstream;
-        inputstream = new FileInputStream("C:\\temp\\img249.png");
+        inputstream = new FileInputStream("temp.png");
         javafx.scene.image.Image img = new Image(inputstream);
         Image.setImage(img);
     }

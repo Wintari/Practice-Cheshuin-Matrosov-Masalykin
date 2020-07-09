@@ -41,9 +41,10 @@ public class Proba
         // 		String repesentationType= "twopi";
         // 		String repesentationType= "circo";
 
-        String path = "c:/temp/img"+gv.getImageDpi()+"."+ type;
+        String path = "temp" + "."+ type;
         File out = new File(path);
         gv.writeGraphToFile( gv.getGraph(gv.getDotSource(), type, repesentationType), out );
+
         return path;
     }
 }
