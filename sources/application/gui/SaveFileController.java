@@ -24,14 +24,13 @@ public class SaveFileController {
     @FXML
     void Confirm(){
         Stage stage = (Stage)confirmButton.getScene().getWindow();
-
-        try {
-            Application.saveGraphToFile(textField.getText());
+        if(!textField.getText().isBlank()) {
+            try {
+                Application.saveGraphToFile(textField.getText());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-
         stage.close();
     }
 

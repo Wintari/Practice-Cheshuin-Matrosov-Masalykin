@@ -25,14 +25,13 @@ public class OpenFileController {
     @FXML
     void Confirm(){
         Stage stage = (Stage)confirmButton.getScene().getWindow();
-
-        try {
-            Application.loadGraphFromFile(textField.getText());
+        if(!textField.getText().isBlank()) {
+            try {
+                Application.loadGraphFromFile(textField.getText());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
         stage.close();
     }
 
