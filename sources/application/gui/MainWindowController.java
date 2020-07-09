@@ -6,8 +6,6 @@ import application.graphviz.Proba;
 import application.stepper.EdgeAction;
 import application.stepper.NodeAction;
 import application.stepper.Step;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -72,7 +70,7 @@ public class MainWindowController {
     private ImageView GraphView;
 
     void setCountOfStep(){
-        this.countOfStep = Application.stepper.getStepCount();
+        this.countOfStep = Application.stepper.getStepCount() + 1;
     }
 
     void setDotSource(){
@@ -93,7 +91,7 @@ public class MainWindowController {
         setCountOfStep();
         setDotSource();
         initSteps();
-        stepNumberField.setText("   Шаг " + currentStep + "/" + countOfStep);
+        stepNumberField.setText("   Шаг " + currentStep + "/" + (countOfStep - 1));
         setGraphView(1);
         try {
             printImg();
@@ -103,7 +101,7 @@ public class MainWindowController {
     }
 
     void reInit(){
-        stepNumberField.setText("   Шаг " + currentStep + "/" + countOfStep);
+        stepNumberField.setText("   Шаг " + currentStep + "/" +  (countOfStep - 1));
         setGraphView(currentStep);
         try {
             printImg();
@@ -277,7 +275,7 @@ public class MainWindowController {
 
     @FXML
     void nextstep(){
-        if (currentStep < countOfStep){
+        if (currentStep <  (countOfStep - 1)){
             currentStep = currentStep + 1;
         }
         reInit();
