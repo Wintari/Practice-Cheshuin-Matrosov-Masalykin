@@ -16,7 +16,6 @@ public class MainWindow extends Application {
         primaryStage.setScene(new Scene(root, 850, 640));
         primaryStage.show();
     }
-
     public static void execute(String[] args) {
         launch(args);
     }
