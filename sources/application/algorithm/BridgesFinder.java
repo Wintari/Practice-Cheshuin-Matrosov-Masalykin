@@ -21,6 +21,7 @@ public class BridgesFinder{
         for (Graph.Node edge : node.getEdges()) {
             if (edge == parent) continue;
             if (used.get(edge.getName())) {
+              
                 Application.stepper.newStep(null,
                         new EdgeAction(EdgeAction.Action.EDGE_STARTED, edge, node));
 

@@ -43,19 +43,17 @@ public class EdgeAction
         {
             switch (action)
             {
-                case EDGE_STARTED -> {
+                case EDGE_STARTED : {
                     return BASE;
                 }
-                case EDGE_FINISHED_COMMON -> {
+                case EDGE_FINISHED_COMMON :
+                case EDGE_FINISHED_BRIDGE : {
                     return EDGE_STARTED;
                 }
-                case EDGE_FINISHED_BRIDGE -> {
-                    return EDGE_STARTED;
-                }
-                case NONE -> {
+                case NONE : {
                     return NONE;
                 }
-                default -> throw new IllegalStateException("Unexpected value: " + action);
+                default : throw new IllegalStateException("Unexpected value: " + action);
             }
         }
 

@@ -53,19 +53,19 @@ public class NodeAction
         {
             switch (action)
             {
-                case NODE_STARTED -> {
+                case NODE_STARTED : {
                     return BASE;
                 }
-                case NODE_FINISHED -> {
+                case NODE_FINISHED : {
                     return NODE_STARTED;
                 }
-                case TIME_UPDATED -> {
+                case TIME_UPDATED : {
                     return TIME_UPDATED;
                 }
-                case NONE -> {
+                case NONE : {
                     return NONE;
                 }
-                default -> throw new IllegalStateException("Unexpected value: " + action);
+                default : throw new IllegalStateException("Unexpected value: " + action);
             }
         }
     }

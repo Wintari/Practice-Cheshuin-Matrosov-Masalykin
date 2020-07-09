@@ -12,7 +12,7 @@ import java.util.LinkedList;
 
 public class Application {
     public static final Stepper stepper = new Stepper();
-    private static Graph graph = new Graph();
+    public static Graph graph = new Graph();
 
     public static void main(String[] args)
     {
