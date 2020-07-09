@@ -30,6 +30,8 @@ public class EdgeAction
     {
         return new EdgeAction(Action.back(action), node, parent);
     }
+    public String getEdge() { return node.getName() + " -- " + parent.getName(); };
+
 
     public enum Action
     {

@@ -21,9 +21,8 @@ public class BridgesFinder{
         for (Graph.Node edge : node.getEdges()) {
             if (edge == parent) continue;
             if (used.get(edge.getName())) {
-              
-                Application.stepper.newStep(null,
-                        new EdgeAction(EdgeAction.Action.EDGE_STARTED, edge, node));
+              Application.stepper.newStep(null,
+                      new EdgeAction(EdgeAction.Action.EDGE_STARTED, edge, node));
 
                 int newFup = Math.min(fup.get(node.getName()), tin.get(edge.getName()));
 
@@ -33,8 +32,8 @@ public class BridgesFinder{
 
                 fup.put(node.getName(), newFup);
 
-                Application.stepper.newStep(fupUpdate,
-                        new EdgeAction(EdgeAction.Action.EDGE_FINISHED_COMMON, edge, node));
+               Application.stepper.newStep(fupUpdate,
+                       new EdgeAction(EdgeAction.Action.EDGE_FINISHED_COMMON, edge, node));
             }
             else {
                 Application.stepper.newStep(new NodeAction(NodeAction.Action.NODE_STARTED,
