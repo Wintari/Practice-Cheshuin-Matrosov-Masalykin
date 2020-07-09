@@ -72,7 +72,7 @@ public class MainWindowController {
     private ImageView GraphView;
 
     void setCountOfStep(){
-        this.countOfStep = Application.stepper.getStepCount() + 1;
+        this.countOfStep = Application.stepper.getStepCount();
     }
 
     void setDotSource(){
