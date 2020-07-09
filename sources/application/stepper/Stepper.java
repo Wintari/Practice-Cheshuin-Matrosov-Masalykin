@@ -16,6 +16,7 @@ public class Stepper {
         if (cursor + 1 < steps.size())
         {
             cursor += 1;
+          
             return steps.get(cursor);
         }
         else
