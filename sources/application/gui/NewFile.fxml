@@ -14,7 +14,7 @@
    <children>
       <ButtonBar layoutY="566.0" prefHeight="40.0" prefWidth="800.0" style="-fx-background-color: BC8F8F;">
         <buttons>
-          <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#Cancel" text="ОТМЕА" />
+          <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#Cancel" text="ОТМЕНА" />
             <Button fx:id="okButton" mnemonicParsing="false" onAction="#Confirm" text="ОК" />
         </buttons>
          <padding>

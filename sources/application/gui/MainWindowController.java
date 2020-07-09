@@ -75,6 +75,7 @@ public class MainWindowController {
     @FXML
     void initialize(){
         setCountOfStep();
+        currentStep = 1;
         stepNumberField.setText("   Шаг " + currentStep + "/" + (countOfStep - 1));
         try {
             printImg();

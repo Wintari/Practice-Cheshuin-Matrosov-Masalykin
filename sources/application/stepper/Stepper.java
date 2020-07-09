@@ -157,6 +157,8 @@ public class Stepper {
         edgeSteps.add(edgeStep);
         stackSteps.add(stackStep);
 
+        cursor = -1;
+
         nextStep();
     }
 
@@ -200,8 +202,6 @@ public class Stepper {
         stackSteps.clear();
 
         fromGraph(Application.graph);
-
-        cursor = 0;
     }
 
 }
