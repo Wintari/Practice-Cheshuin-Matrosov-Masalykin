@@ -74,6 +74,7 @@ public class NewFileController {
         }catch (IOException e){
             //do nothing
         }
+        nodeField.clear();
     }
 
     @FXML
@@ -87,6 +88,7 @@ public class NewFileController {
         }catch (IOException e){
             //do nothing
         }
+        nodeField.clear();
     }
 
     @FXML
@@ -105,6 +107,8 @@ public class NewFileController {
         }catch (IOException e){
             //do nothing
         }
+        node1.clear();
+        node2.clear();
     }
 
     @FXML
@@ -120,6 +124,8 @@ public class NewFileController {
         }catch (IOException e){
             //do nothing
         }
+        node1.clear();
+        node2.clear();
     }
 
     public void printImg() throws IOException {
