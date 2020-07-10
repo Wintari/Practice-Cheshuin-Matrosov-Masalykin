@@ -5,6 +5,7 @@ import application.graphviz.Proba;
 
 import application.stepper.EdgeAction;
 import application.stepper.NodeAction;
+import javafx.animation.AnimationTimer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -31,6 +32,8 @@ public class MainWindowController {
 
     int countOfStep = 10;
     int currentStep = 1;
+
+    boolean timerFlag = false;
 
     @FXML
     public MenuItem newButton;
@@ -67,6 +70,73 @@ public class MainWindowController {
 
     @FXML
     private ImageView GraphView;
+
+
+    @FXML
+    private Button ToEndButton;
+
+    @FXML
+    private Button ToStartButton;
+
+    @FXML
+    private Button PlayButton;
+
+    final AnimationTimer timer = new AnimationTimer() {
+
+        private long lastUpdate = 0;
+
+        @Override
+        public void handle(long time) {
+            if ((time - this.lastUpdate) > 750_000_000) {
+                if(currentStep >= countOfStep - 1){
+                    Play();
+                }
+                else{
+                    nextStep();
+                }
+                this.lastUpdate = time;
+            }
+        }
+    };
+
+    @FXML
+    void GoToEnd() {
+        if(!timerFlag) {
+            if (currentStep < countOfStep - 1) {
+                currentStep = countOfStep - 1;
+                ArrayList<String> stack = Application.stepper.lastStep();
+                ObservableList<String> observableStack = FXCollections.observableArrayList(stack);
+                stackList.setItems(observableStack);
+                reInit();
+            }
+        }
+    }
+
+    @FXML
+    void GoToStart() {
+        if(!timerFlag) {
+            if (currentStep > 1) {
+                currentStep = 1;
+                ArrayList<String> stack = Application.stepper.firstStep();
+                ObservableList<String> observableStack = FXCollections.observableArrayList(stack);
+                stackList.setItems(observableStack);
+                reInit();
+            }
+        }
+    }
+
+    @FXML
+    void Play() {
+        if(!timerFlag){
+            timer.start();
+            PlayButton.setText("STOP");
+        }
+        else {
+            timer.stop();
+            PlayButton.setText("PLAY");
+        }
+        timerFlag = !timerFlag;
+    }
 
     void setCountOfStep(){
         this.countOfStep = Application.stepper.getStepCount() + 1;
@@ -177,17 +247,14 @@ public class MainWindowController {
         stage.close();
     }
 
-    public static String reverseString(String inputString) {
-        int stringLength = inputString.length();
-        String result = "";
-        for (int i = 0; i < stringLength; i++) {
-            result = inputString.charAt(i) + result;
-        }
-        return result;
-    }
-
     @FXML
     void nextstep(){
+        if(!timerFlag) {
+            nextStep();
+        }
+    }
+
+    void nextStep(){
         if (currentStep <  (countOfStep - 1)){
             currentStep = currentStep + 1;
             ArrayList<String> stack = Application.stepper.nextStep();
@@ -199,8 +266,15 @@ public class MainWindowController {
     }
 
     @FXML
-    void prevstep(){
-        if (currentStep > 1){
+    void prevstep() {
+        if(!timerFlag) {
+            prevStep();
+        }
+    }
+
+    void prevStep() {
+
+        if (currentStep > 1) {
             currentStep = currentStep - 1;
             ArrayList<String> stack = Application.stepper.prevStep();
 
@@ -208,6 +282,7 @@ public class MainWindowController {
             stackList.setItems(observableStack);
         }
         reInit();
+
     }
 
     public void printImg() throws IOException{

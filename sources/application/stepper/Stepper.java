@@ -176,6 +176,18 @@ public class Stepper {
         }
     }
 
+    public ArrayList<String> lastStep(){
+        cursor = stackSteps.size() - 1;
+        activeStep(cursor);
+        return stackSteps.get(cursor);
+    }
+
+    public ArrayList<String> firstStep(){
+        cursor = 0;
+        activeStep(cursor);
+        return stackSteps.get(cursor);
+    }
+
     public ArrayList<String> prevStep()
     {
         if (cursor > 0)
