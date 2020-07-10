@@ -7,6 +7,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -49,7 +50,7 @@
                   <Font name="Arial Black" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="stepNumberField" layoutX="375.0" layoutY="552.0" prefHeight="28.0" prefWidth="100.0" style="-fx-background-color: fafafa; -fx-border-color: BC8F8F;" text="   Шаг 1/10">
+            <Label fx:id="stepNumberField" layoutX="375.0" layoutY="538.0" prefHeight="28.0" prefWidth="100.0" style="-fx-background-color: fafafa; -fx-border-color: BC8F8F;" text="   Шаг 1/10">
                <font>
                   <Font size="17.0" />
                </font>
@@ -59,8 +60,21 @@
             <Line endX="735.4000244140625" layoutX="115.0" layoutY="529.0" startX="-115.00000762939453" />
             <Pane fx:id="graphPane" layoutX="9.0" layoutY="57.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="620.0" style="-fx-background-color: ffffff; -fx-border-color: BC8F8F;">
                <children>
-                  <ImageView fx:id="GraphView" fitHeight="440.0" fitWidth="306.0" layoutX="159.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="GraphView" fitHeight="440.0" fitWidth="375.0" layoutX="14.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="368.0" fitWidth="200.0" layoutX="406.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/legend.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="471.0" layoutY="24.0" prefHeight="17.0" prefWidth="70.0" text="ЛЕГЕНДА" textAlignment="CENTER">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Label>
                </children></Pane>
+            <Button fx:id="ToEndButton" layoutX="650.0" layoutY="552.0" minHeight="28.0" minWidth="100.0" mnemonicParsing="false" onAction="#GoToEnd" text="В КОНЕЦ" />
+            <Button fx:id="ToStartButton" layoutX="101.0" layoutY="552.0" minHeight="28.0" minWidth="100.0" mnemonicParsing="false" onAction="#GoToStart" text="В НАЧАЛО" />
+            <Button fx:id="PlayButton" layoutX="375.0" layoutY="568.0" mnemonicParsing="false" onAction="#Play" prefHeight="26.0" prefWidth="100.0" text="PLAY" />
       </children>
     </AnchorPane>
   </children>
